@@ -1,21 +1,30 @@
 var currentDayEL = document.querySelector("#currentDay")
 var EventEl = $("button")
 
+//Format for time and date set below 
 
-currentDayEL.textContent =  moment().format("MMM Do YY");
+var currentDay = moment().format("dddd LL");
+$("#currentDay").append(currentDay);
 
+var currentTime = moment().format("LT");
+$("#currentTime").append(currentTime);
 
+// WHEN I open the planner
+// THEN the current day and time is displayed at the top of the calendar
 
 function enterEvent() {
-    // this is the button and pulls from the siblings text area value 
     var textContent = $(this).siblings("textarea").val()
     console.log(textContent)
-    // pulls out the attribute of "ID"
     var saveEvent = $(this).siblings("div").attr("id")
-//    variables dont get quetes when you invoke them
-    localStorage.setItem(saveEvent, textContent)
-    
+    localStorage.setItem(saveEvent, textContent)   
 }
+
+// WHEN I click into a timeblock
+// THEN I can enter an event
+// WHEN I click the save button for that timeblock
+// THEN the text for that event is saved in local storage
+// WHEN I refresh the page
+// THEN the saved events persist
 
 $("#09").siblings("textarea").val(localStorage.getItem("09"))
 $("#10").siblings("textarea").val(localStorage.getItem("10"))
